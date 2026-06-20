@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rouler Studios</title>
+<meta name="description" content="Rouler Studios — independent game studio. Makers of The Closer: Full Count.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --ink: #16171A;
+    --ink-soft: #5B5D63;
+    --line: #E4E3DE;
+    --accent: #2B6E6B;
+    --accent-soft: #E8F0EF;
+    --card: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+
+  a { color: inherit; }
+
+  .shell {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+  }
+
+  /* spine: a quiet vertical rule with tick marks per section */
+  .spine {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--line);
+  }
+  .spine .tick {
+    position: absolute;
+    left: -3px;
+    width: 7px;
+    height: 1px;
+    background: var(--ink-soft);
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 36px 32px;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  .nav-mark {
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+  }
+
+  .nav-mark .dot {
+    color: var(--accent);
+  }
+
+  nav a.cta {
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--ink);
+    border: 1px solid var(--line);
+    padding: 8px 16px;
+    border-radius: 100px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  nav a.cta:hover { border-color: var(--accent); color: var(--accent); }
+
+  header.hero {
+    padding: 64px 32px 96px;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: rise 0.6s ease-out 0.05s forwards;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  h1.headline {
+    font-weight: 800;
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    max-width: 680px;
+    opacity: 0;
+    animation: rise 0.7s ease-out 0.15s forwards;
+  }
+
+  h1.headline .accent-word {
+    color: var(--accent);
+  }
+
+  .lede {
+    margin-top: 28px;
+    font-size: 18px;
+    color: var(--ink-soft);
+    max-width: 480px;
+    line-height: 1.6;
+    opacity: 0;
+    animation: rise 0.7s ease-out 0.28s forwards;
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  section {
+    padding: 56px 32px;
+    position: relative;
+  }
+
+  .label-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .label-row .index {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .label-row span.title {
+    font-size: 12.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .what-we-make {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 40px;
+  }
+  @media (max-width: 640px) {
+    .what-we-make { grid-template-columns: 1fr; }
+  }
+
+  .what-we-make p {
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--ink);
+  }
+
+  .what-we-make .meta-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .meta-list .meta-item {
+    border-top: 1px solid var(--line);
+    padding-top: 14px;
+  }
+
+  .meta-list .meta-item .k {
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .meta-list .meta-item .v {
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .game-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 44px;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 36px;
+    align-items: center;
+  }
+  @media (max-width: 640px) {
+    .game-card { grid-template-columns: 1fr; padding: 32px 28px; }
+  }
+
+  .game-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 16px;
+    background: var(--accent-soft);
+    padding: 6px 12px;
+    border-radius: 100px;
+  }
+  .game-status::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .game-card h2 {
+    font-weight: 800;
+    font-size: clamp(26px, 4vw, 32px);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+
+  .game-card h2 .sub {
+    display: block;
+    color: var(--ink-soft);
+    font-weight: 600;
+    font-size: 0.62em;
+    margin-top: 4px;
+    letter-spacing: 0;
+  }
+
+  .game-card .desc {
+    margin-top: 18px;
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  .game-card .tags {
+    margin-top: 22px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .game-card .tags span {
+    font-size: 11.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    padding: 6px 12px;
+    border-radius: 100px;
+    font-weight: 600;
+  }
+
+  .game-visual {
+    aspect-ratio: 1/1;
+    border-radius: 12px;
+    background:
+      radial-gradient(circle at 30% 30%, var(--accent-soft) 0%, transparent 60%),
+      linear-gradient(135deg, #F0EFEA 0%, #E9E8E2 100%);
+    border: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+  .game-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 23px, var(--line) 23px, var(--line) 24px);
+  }
+  .game-visual::after {
+    content: '';
+    position: absolute;
+    width: 64%;
+    height: 64%;
+    top: 18%;
+    left: 18%;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    opacity: 0.5;
+  }
+
+  .approach {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  @media (max-width: 640px) {
+    .approach { grid-template-columns: 1fr; }
+  }
+
+  .approach-item {
+    background: var(--card);
+    padding: 32px;
+  }
+
+  .approach-item .num {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  .approach-item h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .approach-item p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  footer {
+    padding: 80px 32px 56px;
+    max-width: 880px;
+    margin: 0 auto;
+    border-top: 1px solid var(--line);
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  footer .foot-left .foot-mark {
+    font-weight: 800;
+    font-size: 18px;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+
+  footer a.contact {
+    display: inline-block;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  footer a.contact:hover { text-decoration: underline; }
+
+  footer .fine {
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-align: right;
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-mark">Rouler<span class="dot">.</span>Studios</div>
+  <a class="cta" href="mailto:hello@roulerstudios.com">Get in touch</a>
+</nav>
+
+<header class="hero">
+  <div class="eyebrow">Independent Game Studio — Louisiana</div>
+  <h1 class="headline">Games built on <span class="accent-word">real skill</span>, not just taps and timers.</h1>
+  <p class="lede">Rouler Studios is a solo-built indie studio making mobile games that reward feel and timing — starting with baseball.</p>
+</header>
+
+<div class="shell">
+  <div class="spine" aria-hidden="true" id="spine"></div>
+
+  <section class="what-we-make">
+    <div>
+      <div class="label-row"><span class="index">01</span><span class="title">What We Make</span></div>
+      <p>We design games around mechanics that take a minute to learn and a lifetime to master — gesture, timing, and read.</p>
+    </div>
+    <div class="meta-list">
+      <div class="meta-item">
+        <div class="k">Focus</div>
+        <div class="v">Sports-driven mobile games</div>
+      </div>
+      <div class="meta-item">
+        <div class="k">Audience</div>
+        <div class="v">Youth players &amp; families</div>
+      </div>
+      <div class="meta-item">
+        <div class="k">Studio</div>
+        <div class="v">One developer, Louisiana-based</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label-row"><span class="index">02</span><span class="title">Currently Pitching</span></div>
+    <div class="game-card">
+      <div>
+        <div class="game-status">Live on the App Store</div>
+        <h2>The Closer<span class="sub">Full Count</span></h2>
+        <p class="desc">A gesture-based pitching simulator built for young players. Wind up, read the count, and throw with your fingers — every pitch is yours to shape.</p>
+        <div class="tags">
+          <span>iOS</span>
+          <span>Baseball</span>
+          <span>Family-friendly</span>
+        </div>
+      </div>
+      <div class="game-visual" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label-row"><span class="index">03</span><span class="title">How We Work</span></div>
+    <div class="approach">
+      <div class="approach-item">
+        <div class="num">—</div>
+        <h3>Solo-built</h3>
+        <p>Every line of code and every pitch mechanic comes from one developer who loves the game enough to sweat the details.</p>
+      </div>
+      <div class="approach-item">
+        <div class="num">—</div>
+        <h3>Player-first</h3>
+        <p>No data collection, no predatory monetization. Just a game built to be fun for kids and families.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="foot-left">
+    <div class="foot-mark">Rouler Studios LLC</div>
+    <a class="contact" href="mailto:hello@roulerstudios.com">hello@roulerstudios.com</a>
+  </div>
+  <div class="fine">&copy; 2026 Rouler Studios LLC<br>Based in Louisiana</div>
+</footer>
+
+<script>
+  const spine = document.getElementById('spine');
+  const shell = document.querySelector('.shell');
+  document.querySelectorAll('.label-row').forEach(row => {
+    const tick = document.createElement('div');
+    tick.className = 'tick';
+    const rowRect = row.getBoundingClientRect();
+    const shellRect = shell.getBoundingClientRect();
+    tick.style.top = (rowRect.top - shellRect.top + rowRect.height / 2) + 'px';
+    spine.appendChild(tick);
+  });
+</script>
+
+</body>
+</html>
